@@ -4,6 +4,6 @@ describe("Weather App", () => {
   });
 
   it("should see current city weather", () => {
-    cy.get("[data-cy=DEMO]").should("be.visible");
+    cy.get("[data-testid=DEMO]").should("be.visible");
   });
 });
