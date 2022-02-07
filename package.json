@@ -69,6 +69,5 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,scss,sass,md}": "prettier --write"
-  },
-  "homepage": "https://zxas3229.github.io/my-app"
+  }
 }
