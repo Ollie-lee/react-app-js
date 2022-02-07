@@ -30,6 +30,9 @@ jobs:
     - name: Run the tests and generate coverage report
       run: npm test -- --coverage
 
+    - name: Run Cypress test
+      run: npm run cypress:run
+
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
 
