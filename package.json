@@ -16,13 +16,28 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest",
       "prettier"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "cypress/**/*"
+        ],
+        "plugins": [
+          "cypress"
+        ],
+        "env": {
+          "cypress/globals": true
+        }
+      }
     ]
   },
   "browserslist": {
@@ -40,7 +55,11 @@
   "devDependencies": {
     "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
+    "@cypress/react": "^5.12.1",
+    "@cypress/webpack-dev-server": "^1.8.0",
+    "cypress": "^9.4.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "husky": ">=6",
     "lint-staged": ">=10",
     "prettier": "2.5.1"
