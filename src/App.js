@@ -1,23 +1,33 @@
-import logo from "./logo.svg";
-import "./App.css";
+import BlueDivider from "./components/BlueDivider";
+import styles from "./App.module.css";
+import WidgetContainer from "./components/WidgetContainer";
+import WeatherCard from "./components/WeatherCard";
+import { useState } from "react/cjs/react.development";
 
 function App() {
+  const [title, setTitle] = useState();
+  const [temperatureMode, setTemperatureMode] = useState(true);
+  const [windMode, setWindMode] = useState(true);
+
   return (
-    <div className="App" data-testid="DEMO">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.container} data-testid="DEMO">
+      <BlueDivider />
+      <div className={styles.contentContainer}>
+        <WidgetContainer
+          title={title}
+          setTitle={setTitle}
+          temperatureMode={temperatureMode}
+          setTemperatureMode={setTemperatureMode}
+          windMode={windMode}
+          setWindMode={setWindMode}
+        />
+        <div className={styles.verticalDivider}></div>
+        <WeatherCard
+          title={title}
+          windMode={windMode}
+          temperatureMode={temperatureMode}
+        />
+      </div>
     </div>
   );
 }
