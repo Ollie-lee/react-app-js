@@ -10,7 +10,7 @@ export default function WeatherCard() {
     ? weatherData.temperature
     : (weatherData.temperature * 9) / 5 + 32;
 
-  if (loading) return <div>Loading</div>;
+  if (loading) return <div data-testid="loading">Loading</div>;
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{title}</h1>
@@ -18,6 +18,7 @@ export default function WeatherCard() {
         <img
           src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
           alt="weather-icon"
+          data-testid="weather-icon"
         />
         <div className={styles.descriptionContainer}>
           <span className={styles.cityName}>{weatherData.locationName}</span>
