@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import { getCurrentWeather } from "../../API/apis";
+import { degToCompass } from "../../utils/utils";
 
 export default function WeatherCard({
   title = "TITLE OF WIDGET",
   windMode,
   temperatureMode,
 }) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState({});
   const temp = temperatureMode
     ? weatherData.temperature
@@ -16,7 +17,6 @@ export default function WeatherCard({
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        setLoading(true);
         getCurrentWeather(
           Math.trunc(position.coords.latitude),
           Math.trunc(position.coords.longitude)
@@ -26,6 +26,7 @@ export default function WeatherCard({
             temperature: Math.trunc(res.main.temp),
             windSpeed: Math.trunc(res.wind.speed * 3.6),
             icon: res.weather[0].icon,
+            windDirection: degToCompass(res.wind.deg),
           });
           setLoading(false);
         });
@@ -50,7 +51,8 @@ export default function WeatherCard({
           <span className={styles.temperature}>{Math.trunc(temp)}&#176; </span>
           {windMode && (
             <span className={styles.detail}>
-              <b>Wind</b> &nbsp; NE {weatherData.windSpeed}km/h
+              <b>Wind</b> &nbsp; {weatherData.windDirection}{" "}
+              {weatherData.windSpeed}km/h
             </span>
           )}
         </div>
