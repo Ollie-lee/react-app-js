@@ -1,39 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import styles from "./index.module.css";
-import { getCurrentWeather } from "../../API/apis";
-import { degToCompass } from "../../utils/utils";
+import { useCurrentLocationWeather } from "../../hooks/useCurrentLocationWeather";
 import { WeatherStoreContext } from "../../contexts/WeatherContextProvider";
 
 export default function WeatherCard() {
-  const [loading, setLoading] = useState(true);
-  const [weatherData, setWeatherData] = useState({});
+  const [loading, weatherData] = useCurrentLocationWeather();
   const { title, temperatureMode, windMode } = useContext(WeatherStoreContext);
   const temp = temperatureMode
     ? weatherData.temperature
     : (weatherData.temperature * 9) / 5 + 32;
-
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        getCurrentWeather(
-          Math.trunc(position.coords.latitude),
-          Math.trunc(position.coords.longitude)
-        ).then((res) => {
-          setWeatherData({
-            locationName: res.name,
-            temperature: Math.trunc(res.main.temp),
-            windSpeed: Math.trunc(res.wind.speed * 3.6),
-            icon: res.weather[0].icon,
-            windDirection: degToCompass(res.wind.deg),
-          });
-          setLoading(false);
-        });
-      });
-    } else {
-      /* geolocation IS NOT available */
-      alert("geolocation IS NOT available");
-    }
-  }, []);
 
   if (loading) return <div>Loading</div>;
   return (
