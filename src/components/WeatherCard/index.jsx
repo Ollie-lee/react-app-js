@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./index.module.css";
 import { getCurrentWeather } from "../../API/apis";
 import { degToCompass } from "../../utils/utils";
+import { WeatherStoreContext } from "../../contexts/WeatherContextProvider";
 
-export default function WeatherCard({
-  title = "TITLE OF WIDGET",
-  windMode,
-  temperatureMode,
-}) {
+export default function WeatherCard() {
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState({});
+  const { title, temperatureMode, windMode } = useContext(WeatherStoreContext);
   const temp = temperatureMode
     ? weatherData.temperature
     : (weatherData.temperature * 9) / 5 + 32;

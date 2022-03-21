@@ -5,7 +5,7 @@ import Radio from "../Radio";
 export default function RadioGroup({
   header = "Title",
   value,
-  setValue,
+  dispatch,
   content,
 }) {
   return (
@@ -15,16 +15,16 @@ export default function RadioGroup({
         <Radio
           name={header}
           value={true}
-          setValue={setValue}
           content={content[0]}
           checked={value === true}
+          dispatch={dispatch}
         />
         <Radio
           name={header}
           value={false}
-          setValue={setValue}
           content={content[1]}
           checked={value === false}
+          dispatch={dispatch}
         />
       </div>
     </div>
