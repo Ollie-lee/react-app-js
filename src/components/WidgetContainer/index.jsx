@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./index.module.css";
-import CityNameForm from "../CityNameForm";
+import TitleForm from "../TitleForm";
 import RadioGroup from "../RadioGroup";
 import { WeatherStoreContext } from "contexts/WeatherContextProvider";
 import {
@@ -15,7 +15,7 @@ export default function Index() {
 
   return (
     <div className={styles.container}>
-      <CityNameForm />
+      <TitleForm />
       <RadioGroup
         value={temperatureMode}
         dispatch={(event) =>

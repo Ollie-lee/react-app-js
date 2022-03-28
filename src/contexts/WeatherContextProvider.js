@@ -8,6 +8,7 @@ export const WeatherProvider = (props) => {
     title: "Default Title",
     temperatureMode: true,
     windMode: true,
+    cityName: "perth",
   });
 
   return (

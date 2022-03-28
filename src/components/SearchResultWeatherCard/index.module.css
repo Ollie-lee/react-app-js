@@ -1,0 +1,25 @@
+.title {
+  font-size: 700;
+  font-size: 1.5rem;
+}
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.lower {
+  display: flex;
+  align-items: center;
+}
+.cityName {
+  font-weight: 500;
+}
+.temperature {
+  font-weight: 700;
+  font-size: 3rem;
+}
+.container {
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 30px;
+}
