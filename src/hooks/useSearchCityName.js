@@ -18,21 +18,29 @@ export const useSearchCityName = () => {
   const { cityName, dispatch } = useContext(WeatherStoreContext);
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState({});
+  const [error, setError] = useState(false);
 
   const debouncedCityName = useDebounce(cityName, 2000);
 
   useEffect(() => {
+    if (!debouncedCityName) return;
     async function fetchData() {
       // debugger;
 
       setLoading(true);
-      const res = await getCurrentWeatherByCityName(
-        // latestCityName.current
-        debouncedCityName
-      );
+      let res;
+      try {
+        res = await getCurrentWeatherByCityName(debouncedCityName);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+        setWeatherData({});
+        return;
+      }
       if (res?.cod === "400") {
         setLoading(false);
         setWeatherData({});
+        setError(true);
         return;
       }
       if (res) {
@@ -44,10 +52,11 @@ export const useSearchCityName = () => {
           windDirection: degToCompass(res.wind.deg),
         });
         setLoading(false);
+        setError(false);
       }
     }
     fetchData();
   }, [debouncedCityName]);
 
-  return [loading, weatherData];
+  return [loading, weatherData, error];
 };

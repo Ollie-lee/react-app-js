@@ -2,12 +2,15 @@ import { useSearchCityName } from "hooks/useSearchCityName";
 import React, { useContext } from "react";
 import styles from "./index.module.css";
 import { WeatherStoreContext } from "contexts/WeatherContextProvider";
+import { isEmpty } from "lodash";
 
 export default function SearchResultWeatherCard() {
-  const [loading, weatherData] = useSearchCityName();
+  const [loading, weatherData, error] = useSearchCityName();
   const { cityName, dispatch } = useContext(WeatherStoreContext);
 
   if (loading) return <div data-testid="loading">Loading</div>;
+  if (!cityName) return <div data-testid="empty">Please enter city name</div>;
+  if (error) return <div data-testid="error">No city found</div>;
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Typed City Name: {cityName}</h1>
