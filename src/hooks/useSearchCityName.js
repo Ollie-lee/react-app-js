@@ -3,6 +3,7 @@ import { getCurrentWeatherByCityName } from "API/apis";
 import { WeatherStoreContext } from "contexts/WeatherContextProvider";
 import { debounce } from "lodash";
 import { degToCompass } from "../utils/utils";
+import { useDebounce } from "./useDebounce";
 
 // debounced version of function will be a new function fot every render,
 // we use the useCallback hook to make sure that the same function is being persisted between renders and it will work as expected.
@@ -17,18 +18,17 @@ export const useSearchCityName = () => {
   const { cityName, dispatch } = useContext(WeatherStoreContext);
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState({});
-  // const latestCityName = useRef(cityName);
-  // const latestLoading = useRef(loading);
-  // const latestWeatherData = useRef(weatherData);
+
+  const debouncedCityName = useDebounce(cityName, 2000);
 
   useEffect(() => {
     async function fetchData() {
-      debugger;
+      // debugger;
 
       setLoading(true);
-      const res = await debouncedGetCurrentWeatherByCityName(
+      const res = await getCurrentWeatherByCityName(
         // latestCityName.current
-        cityName
+        debouncedCityName
       );
       if (res?.cod === "400") {
         setLoading(false);
@@ -47,14 +47,7 @@ export const useSearchCityName = () => {
       }
     }
     fetchData();
-  }, [cityName]);
-
-  // useEffect(() => {
-  //   latestCityName.current = cityName;
-  //   // latestCityName.current = latestCityName;
-  //   // latestLoading.current = latestLoading;
-  //   // latestWeatherData.current = latestWeatherData;
-  // });
+  }, [debouncedCityName]);
 
   return [loading, weatherData];
 };
