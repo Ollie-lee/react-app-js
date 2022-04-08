@@ -25,8 +25,6 @@ export const useSearchCityName = () => {
   useEffect(() => {
     if (!debouncedCityName) return;
     async function fetchData() {
-      // debugger;
-
       setLoading(true);
       let res;
       try {
