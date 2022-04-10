@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getCurrentWeather } from "../API/apis";
+import { getCurrentWeather } from "../API/getCurrentWeather";
 import { degToCompass } from "../utils/utils";
 
 export const useCurrentLocationWeather = () => {
