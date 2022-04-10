@@ -2,7 +2,7 @@ import * as firstApi from "../getGeoCordsByCityName";
 import * as secondApi from "../getCurrentWeather";
 import { getCurrentWeatherByCityName } from "../getCurrentWeatherByCityName";
 
-describe.only("getCurrentWeatherByCityName", () => {
+describe("getCurrentWeatherByCityName", () => {
   let mockGetGeoCordsByCityName;
   let mockGetCurrentWeather;
   beforeEach(() => {

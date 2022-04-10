@@ -75,6 +75,6 @@ describe("getCurrentWeather", () => {
 
     OpenWeatherMap.get.mockResolvedValue({ data });
     const response = await getCurrentWeather(lat, lon);
-    expect(response).toBe(data);
+    expect(response).toEqual(data);
   });
 });

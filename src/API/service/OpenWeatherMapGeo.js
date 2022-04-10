@@ -6,7 +6,7 @@ const OpenWeatherMapGeo = axios.create({
   baseURL,
 });
 
-const enrichRequestWithAppId = (config) => {
+export const enrichRequestWithAppId = (config) => {
   config.params.appid = "8ae4a4a4221168957021b5693160e4ee";
 
   return config;
