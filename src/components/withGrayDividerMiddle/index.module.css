@@ -1,0 +1,12 @@
+@import "../../vars.css";
+.verticalDivider {
+  border-left: 2px solid var(--border);
+  height: 200px;
+  margin: 0 30px;
+}
+
+@media (max-width: 768px) {
+  .verticalDivider {
+    display: none;
+  }
+}

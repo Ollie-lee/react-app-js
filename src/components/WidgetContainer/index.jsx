@@ -9,7 +9,7 @@ import {
 } from "../../modules/weatherReducer";
 import { strToBool } from "../../utils/utils";
 
-export default function Index() {
+export default function WidgetContainer() {
   const { temperatureMode, dispatch, windMode } =
     useContext(WeatherStoreContext);
 
