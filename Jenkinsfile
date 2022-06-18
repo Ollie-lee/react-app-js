@@ -16,7 +16,7 @@ pipeline {
       steps {
         echo "Installing packages ..."
         sh "rm -rf node_modules"
-//         sh "npm i npm@latest"
+        sh "npm i npm@latest"
         sh 'npm i'
       }
     }
