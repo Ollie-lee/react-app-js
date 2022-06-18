@@ -27,21 +27,37 @@ pipeline {
         sh 'npm i'
       }
     }
-    stage('Test and Build') {
-      parallel {
-        stage('Run Tests') {
-          steps {
-            echo "Testing ..."
-            sh 'npm run test'
-          }
+//     stage('Test and Build') {
+//       parallel {
+//         stage('Run Tests') {
+//           steps {
+//             echo "Testing ..."
+//             sh 'npm run test'
+//           }
+//         }
+//         stage('Create Build Artifacts') {
+//           steps {
+//             echo "Building ..."
+//             sh 'npm run build'
+//           }
+//         }
+//       }
+    
+
+        stage('Test') {
+            steps{
+                echo "Testing ..."
+                sh 'npm run test'
+            }
         }
-        stage('Create Build Artifacts') {
-          steps {
-            echo "Building ..."
-            sh 'npm run build'
-          }
+        stage('Build') {
+            steps {
+                echo "Building ..."
+                //use env.variable to access environment variable
+//                 echo "Running job: ${env.JOB_NAME}\n Build: ${env.BUILD_ID} - ${env.BUILD_URL}\n Pipeline: ${env.RUN_DISPLAY_URL}"
+                sh 'npm run build'
+            }
         }
-      }
     }
 
 stage('Production') {
@@ -51,6 +67,14 @@ stage('Production') {
     s3Upload(bucket: 'react-interview-jenkins', workingDir:'build', includePathPattern:'**/*');
             }
           }
+        }
+    }
+    post {
+        success {
+            echo "WELL DONE!"
+        }
+        failure {
+            echo "FAILED"
         }
     }
 }
