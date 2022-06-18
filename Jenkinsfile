@@ -8,9 +8,16 @@ pipeline {
   }
   environment {
     CI = 'true'
-    HOME = '.'
-    npm_config_cache = 'npm-cache'
+//     HOME = '.'
+//     npm_config_cache = 'npm-cache'
   }
+    options {
+        // Keep maximum 10 archieved artifacts
+        buildDiscarder(logRotator(numToKeepStr:'10', artifactNumToKeepStr:'10'))
+        // No simultaneous builds
+        disableConcurrentBuilds()
+        durabilityHint('PERFORMANCE_OPTIMIZED') //MAX_SURVIVABILITY or SURVIVABLE_NONATOMIC
+    }  
   stages {
     stage('Install Packages') {
       steps {
