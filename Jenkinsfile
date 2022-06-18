@@ -14,6 +14,7 @@ pipeline {
     stage('Install Packages') {
       steps {
         echo "Installing packages ..."
+        sh "npm i npm@latest"
         sh 'npm install'
       }
     }
