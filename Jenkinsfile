@@ -112,12 +112,12 @@ pipeline {
         sh 'npm i'
             }
         }
-        stage('Test') {
-            steps{
-                echo "Testing ..."
-                sh 'npm run test'
-            }
-        }      
+//         stage('Test') {
+//             steps{
+//                 echo "Testing ..."
+//                 sh 'npm run test'
+//             }
+//         }      
         stage('Build') {
             steps {
                 echo "Building ..."
