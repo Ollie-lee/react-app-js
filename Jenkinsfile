@@ -1,9 +1,10 @@
 pipeline {
   agent {
-        docker {
-            //using this docker image to run the following tasks
-            image 'node:14.18.0'
-        }
+//         docker {
+//             //using this docker image to run the following tasks
+//             image 'node:14.18.0'
+//         }
+    any
   }
   environment {
     CI = 'true'
@@ -15,7 +16,7 @@ pipeline {
       steps {
         echo "Installing packages ..."
         sh "rm -rf node_modules"
-        sh "npm i npm@latest"
+//         sh "npm i npm@latest"
         sh 'npm ci'
       }
     }
