@@ -86,7 +86,9 @@ pipeline {
     agent {
         docker {
             //using this docker image to run the following tasks
-            image 'node:14.18.0'
+//             image 'node:14.18.0'
+            image 'node:lts-bullseye-slim'
+            args '-p 3000:3000'
         }
     }
 
