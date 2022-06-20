@@ -7,7 +7,7 @@ export default function SearchResultWeatherCard() {
   const [loading, weatherData, error] = useSearchCityName();
   const { cityName } = useContext(WeatherStoreContext);
 
-  if (loading) return <div data-testid="loading">Loading</div>;
+  if (loading) return <div>Loading</div>;
   if (!cityName) return <div data-testid="empty">Please enter city name</div>;
   if (error) return <div data-testid="error">No city found</div>;
   return (
