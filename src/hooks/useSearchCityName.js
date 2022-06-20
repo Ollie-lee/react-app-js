@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { getCurrentWeatherByCityName } from "API/getCurrentWeatherByCityName";
 import { WeatherStoreContext } from "contexts/WeatherContextProvider";
-import { debounce } from "lodash";
 import { degToCompass } from "../utils/utils";
 import { useDebounce } from "./useDebounce";
 
