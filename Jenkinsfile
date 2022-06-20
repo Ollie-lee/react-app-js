@@ -36,8 +36,7 @@ pipeline {
                 sh 'npm run test'
 
                 echo "E2E Testing ..."
-                // sh 'apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb'
-                sh 'npm run cypress:run'
+                sh 'npm run ci:e2e'
             }
         }      
         stage('Build') {
