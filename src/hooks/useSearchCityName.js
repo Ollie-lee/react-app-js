@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getCurrentWeatherByCityName } from "API/getCurrentWeatherByCityName";
 import { WeatherStoreContext } from "contexts/WeatherContextProvider";
 import { debounce } from "lodash";
@@ -9,13 +9,13 @@ import { useDebounce } from "./useDebounce";
 // we use the useCallback hook to make sure that the same function is being persisted between renders and it will work as expected.
 // so the useEffect won'y be triggered due to "debouncedGetCurrentWeatherByCityName" change
 // here we extract this function out of the component, so no need to add it to useEffect dep array.
-const debouncedGetCurrentWeatherByCityName = debounce(
-  getCurrentWeatherByCityName,
-  2000
-);
+// const debouncedGetCurrentWeatherByCityName = debounce(
+//   getCurrentWeatherByCityName,
+//   2000
+// );
 
 export const useSearchCityName = () => {
-  const { cityName, dispatch } = useContext(WeatherStoreContext);
+  const { cityName } = useContext(WeatherStoreContext);
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState({});
   const [error, setError] = useState(false);

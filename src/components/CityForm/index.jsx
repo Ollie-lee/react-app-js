@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./index.module.css";
 import { UPDATE_CITY_NAME } from "../../modules/weatherReducer";
 import { WeatherStoreContext } from "contexts/WeatherContextProvider";
