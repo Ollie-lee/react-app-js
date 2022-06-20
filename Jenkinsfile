@@ -2,7 +2,8 @@ pipeline {
     agent {
         docker {
             //using this docker image to run the following tasks
-            image 'node:lts-bullseye-slim'
+            // image 'node:lts-bullseye-slim'
+            image 'cypress/base:16.14.2-slim'
             args '-p 3000:3000'
         }
     }
@@ -35,7 +36,7 @@ pipeline {
                 sh 'npm run test'
 
                 echo "E2E Testing ..."
-                sh 'apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb'
+                // sh 'apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb'
                 sh 'npm run cypress:run'
             }
         }      
