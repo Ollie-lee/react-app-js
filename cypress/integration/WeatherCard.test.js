@@ -1,7 +1,7 @@
 import * as hooks from "../../src/hooks/useCurrentLocationWeather";
 describe("<WeatherCard />", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000");
+    cy.visit("/");
   });
   describe("On Loading", () => {
     beforeEach(() => {

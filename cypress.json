@@ -1,7 +1,8 @@
 {
+  "baseUrl": "http://localhost:3000",
+  "includeShadowDom": true,
   "component": {
-    "testFiles": "**/*.test.{js,ts,jsx,tsx}",
+    "testFiles": "**/*.spec.{js,ts,jsx,tsx}",
     "componentFolder": "src"
-  },
-  "videoRecording": false
+  }
 }
