@@ -8,15 +8,19 @@ import SearchResultWeatherCard from "./components/SearchResultWeatherCard";
 import withGrayDividerMiddle from "./components/withGrayDividerMiddle";
 
 function App() {
-  const upper = withGrayDividerMiddle(WidgetContainer, WeatherCard);
-  const lower = withGrayDividerMiddle(CityForm, SearchResultWeatherCard);
+  const Upper = withGrayDividerMiddle(WidgetContainer, WeatherCard);
+  const Lower = withGrayDividerMiddle(CityForm, SearchResultWeatherCard);
   return (
     <div className={styles.container} data-testid="DEMO">
       <WeatherProvider>
         <BlueDivider />
         <div className={styles.contentContainer}>
-          <div className={styles.upper}>{upper({ a: 1 }, { b: 2 })}</div>
-          <div className={styles.lower}>{lower({ c: 3 }, { d: 4 })}</div>
+          <div className={styles.upper}>
+            <Upper />
+          </div>
+          <div className={styles.lower}>
+            <Lower />
+          </div>
         </div>
       </WeatherProvider>
     </div>
